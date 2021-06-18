@@ -40,6 +40,8 @@ Batching supports two types of subrequests: SetBlobAccessTier for block blobs an
 - Batch subrequest execution is not atomic. Each subrequest is executed independently.
 - Each subrequest must be for a resource within the same storage account.
 
+Request to batch delete blobs with ```DeleteSnapshotsOption.IncludeSnapshots``` selected for blobs without existing snapshots will result in ```System.AggregateException``` - BlobNotFound error.
+
 ### Thread safety
 We guarantee that all client instance methods are thread-safe and independent of each other ([guideline](https://azure.github.io/azure-sdk/dotnet_introduction.html#dotnet-service-methods-thread-safety)). This ensures that the recommendation of reusing client instances is always safe, even across threads.
 
